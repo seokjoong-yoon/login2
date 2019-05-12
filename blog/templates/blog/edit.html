@@ -1,0 +1,10 @@
+<div class="container">
+    <form action="{% url 'edit' id=post.id %}" method="POST" enctype="multipart/form=data">
+        {% csrf_token %}
+        <p>제목 : {{form.title}}</p>
+        <p>내용 : {{form.content}}<p>
+        <p>작성자 : {{form.author}}</p>
+        <input type="submit" value="Save">
+    </form>
+    <a href="{% url 'show' post_id=post.id %}">Back</a>
+</div>

@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>제목 : {{post.title}}</h2><br>
+    <h3>내용</h3>{{post.content|linebreaks}}<br><br>
+    <p>작성자 : {{post.author}}</p>
+    <p>작성일 : {{post.pub_date}}</p><br>
+    <p><a href="{% url 'edit' id=post.pk %}">Edit</a></p>
+    <p><a href="{% url 'delete' post.id %}">Delete</a></p>
+    <a href="{% url 'home' %}">Back</a><br><br>
+</div>
