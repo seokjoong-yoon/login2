@@ -16,3 +16,18 @@ class Post(models.Model):
     
     def summary(self):
         return self.content[:5]
+        
+    
+class Comment(models.Model):
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
+    content = models.CharField(max_length=300)
+    pub_date = models.DateTimeField(default=timezone.now)
+    author = models.CharField(max_length=30, null=True, blank=True)
+    
+class Follow(models.Model):
+    follow = models.BooleanField(default=False)
+
+class Follow_post(models.Model):
+    follow = models.ForeignKey('blog.Follow', on_delete=models.CASCADE)
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE)
+    author = models.CharField(max_length=30, null=True, blank=True)

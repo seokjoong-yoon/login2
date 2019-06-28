@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^(?P<post_id>\d+)/$', views.show, name="show"),
     url(r'^delete/(?P<post_id>\d+)/$', views.delete, name="delete"),
     url(r'^edit/(?P<id>\d+)/$', views.edit, name="edit"),
+    url(r'^commentcreate/(?P<pk>\d+)/$', views.commentcreate, name='commentcreate'),
+    url(r'^follow/(?P<id>\d+)/$', views.postfollow, name="follow"),
 ]

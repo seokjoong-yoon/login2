@@ -7,3 +7,35 @@
     <p><a href="{% url 'delete' post.id %}">Delete</a></p>
     <a href="{% url 'home' %}">Back</a><br><br>
 </div>
+
+
+<p>
+    <a href="{% url 'follow' id=post.pk %}">팔로우하기</a>
+</p>
+
+
+<div class="container">
+    <form action="{% url 'commentcreate' pk=post.pk %}" method="POST" enctype="multipart/form=data">
+        {% csrf_token %}
+        <p>내용 : {{form.content}}<p>
+        <p>작성자 : {{form.author}}</p>
+        <input type="submit" value="Add comment">
+    </form>
+</div>
+
+<h4>댓글 목록</h4>
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <div class="date">{{ comment.pub_date }}, 작성자 : {{ comment.author }}</div>
+            <p>{{ comment.content|linebreaks }}</p>
+            ------------------------------
+        </div>
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
+
+<p>
+    <a href="{% url 'follow' id=post.pk %}">팔로우하기</a>
+    <b>{{follow.count}}</b>명이 팔로우합니다.
+    <p>팔로우 중인 사람 : {% for f in follow %} {{f.author}}<br> {%endfor%}</p>
+</p>
